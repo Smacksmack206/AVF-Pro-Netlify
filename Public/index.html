@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVF Pro / AVF+ | Advanced Linux on Android</title>
+    <meta name="description" content="AVF Pro / AVF+ transforms the Android Virtualization Framework into a powerful, persistent Linux desktop and development environment on your phone.">
+    
+    <!-- Pico.css Framework -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #007bff;
+            --primary-hover: #0056b3;
+            --primary-inverse: #FFF;
+            --secondary: #6c757d;
+            --secondary-hover: #5a6268;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: var(--card-background-color);
+            border-bottom: 1px solid var(--card-border-color);
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero h2 {
+            font-size: 1.2rem;
+            color: var(--muted-color);
+            margin-bottom: 2rem;
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 3rem 0;
+        }
+        
+        #ai-tools {
+            background-color: var(--card-background-color);
+            border-top: 1px solid var(--card-border-color);
+            border-bottom: 1px solid var(--card-border-color);
+        }
+
+        /* Showcase Placeholders */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .placeholder {
+            aspect-ratio: 16 / 9;
+            background-color: var(--muted-border-color);
+            border: 2px dashed var(--muted-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--muted-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .placeholder:hover {
+            background-color: var(--card-background-color);
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            text-align: center;
+        }
+        .feature-card svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Custom Button Styles */
+        .button-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: var(--primary-inverse);
+        }
+        .button-primary:hover {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul.links {
+            margin-bottom: 0;
+        }
+        nav ul li {
+            padding: 0 0.5rem;
+        }
+
+        /* Blockquote for technical highlights */
+        blockquote {
+            border-left: 4px solid var(--primary);
+            background-color: var(--card-background-color);
+            padding: 1rem 1.5rem;
+        }
+        
+        /* AI Tools Section */
+        #command-output-wrapper {
+            position: relative;
+            background-color: var(--code-background-color);
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+        }
+        #command-output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            padding: 1rem;
+            color: var(--code-color);
+        }
+        #copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            cursor: pointer;
+        }
+        #idea-output {
+            margin-top: 1rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        /* Modal Styles */
+        dialog[open] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        dialog article {
+            width: 450px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="container">
+        <nav>
+            <div>
+                <strong>AVF Pro+</strong>
+            </div>
+            <ul class="links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#ai-tools">AI Tools</a></li>
+                <li><a href="#technical">Technical</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <!-- Dark Mode Toggle -->
+                    <a href="#" id="theme-switcher" aria-label="Switch theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <hgroup>
+                    <h1>AVF Pro / AVF+</h1>
+                    <h2>Transforming Android's basic terminal into a persistent, full-featured Linux desktop and development environment.</h2>
+                </hgroup>
+                <div class="hero-buttons">
+                    <a href="https://github.com/Smacksmack206/P9Debian" target="_blank" role="button" class="outline">View on GitHub</a>
+                    <a href="#contact" role="button" class="button-primary">Contact & Collaborate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem & Solution -->
+        <section id="problem-solution" class="container">
+            <div class="grid">
+                <article>
+                    <h3>The Problem</h3>
+                    <p>The default Debian terminal introduced in Android 16 via AVF, while promising, is heavily restricted. It lacks persistence, has severe storage limitations, and misses the essential features required for any practical development work.</p>
+                </article>
+                <article>
+                    <h3>The Solution</h3>
+                    <p>This project overcomes these limitations through deep system analysis, reverse engineering, and advanced Linux techniques. It unlocks AVF's potential to provide a truly usable, powerful, and persistent Linux environment right on your mobile device.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="container">
+            <h2 class="text-center">Key Features</h2>
+            <div class="grid">
+                <div class="feature-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    <h4>Full Linux Desktop</h4>
+                    <p>Run standard desktop environments like XFCE4 or GNOME, accessible via any VNC client.</p>
+                </div>
+                <div class="feature-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <h4>Massive Storage</h4>
+                    <p>Overcomes the default disk limit using a robust LVM on `qcow2` solution for ample space.</p>
+                </div>
+                <div class="feature-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <h4>Development Toolchains</h4>
+                    <p>Easily install environments for Python, Node.js, C/C++, Go, Rust, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <h4>Seamless Integration</h4>
+                    <p>Leverages `virtiofs` for straightforward file sharing between Android and the Linux VM.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI-Powered Tools Section -->
+        <section id="ai-tools" class="container">
+            <hgroup>
+                <h2 class="text-center">AI-Powered Tools ✨</h2>
+                <p class="text-center">Leverage the Gemini API to enhance your workflow.</p>
+            </hgroup>
+            <div class="grid">
+                <article>
+                    <h4 class="text-center">AI Command Generator</h4>
+                    <p>Describe what you want to do in the terminal, and get the command you need.</p>
+                    <label for="command-input">Your task:</label>
+                    <textarea id="command-input" placeholder="e.g., 'install git and clone my project repo'"></textarea>
+                    <button id="generate-command-btn" aria-busy="false">✨ Generate Command</button>
+                    <div id="command-output-wrapper">
+                        <pre><code id="command-output">Your generated command will appear here...</code></pre>
+                        <button id="copy-button" aria-label="Copy to clipboard" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2v8.5A1.5 1.5 0 0 0 2.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-8.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1z"/><path d="M10 .5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6.5 1A1.5 1.5 0 0 1 8 .5h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 9.5 4h-1A1.5 1.5 0 0 1 7 2.5v-1A1.5 1.5 0 0 1 6.5 1zM5 3.5A1.5 1.5 0 0 1 6.5 2h1A1.5 1.5 0 0 1 9 3.5v1A1.5 1.5 0 0 1 7.5 6h-1A1.5 1.5 0 0 1 5 4.5v-1z"/><path d="M13 3.5a1.5 1.5 0 0 1 1.5-1.5h1A1.5 1.5 0 0 1 17 3.5v1A1.5 1.5 0 0 1 15.5 6h-1A1.5 1.5 0 0 1 13 4.5v-1z"/></svg>
+                        </button>
+                    </div>
+                </article>
+                <article>
+                    <h4 class="text-center">Project Idea Generator</h4>
+                    <p>Not sure what to do with a Linux environment on your phone? Get inspired!</p>
+                    <button id="generate-idea-btn" aria-busy="false" class="contrast">✨ Suggest a Project</button>
+                    <article id="idea-output" style="display:none;">
+                        <p id="idea-text"></p>
+                    </article>
+                </article>
+            </div>
+        </section>
+        
+        <!-- Showcase -->
+        <section id="showcase" class="container">
+            <h2 class="text-center">Showcase</h2>
+            <p class="text-center">Visual demonstrations of AVF Pro+ in action.</p>
+            <div class="showcase-grid">
+                <figure>
+                    <picture>
+                        <img src="images/vncgnome.png" alt="Gnome Desktop over VNC" width="150" height="auto" style="width: 100%; height: auto; border-radius: var(--border-radius);">
+                    </picture>
+                    <figcaption>Run standard graphical Linux applications.</figcaption>
+                </figure>
+                <figure>
+                    <picture>
+                        <img src="images/avfpythoninstall.png" alt="Python installer in terminal" width="150" height="auto" style="width: 100%; height: auto; border-radius: var(--border-radius);">
+                    </picture>
+
+                    <figcaption>Fully featured interactive python installer transforms the terminal experience</figcaption>
+                </figure>
+                <figure>
+                    <picture>
+                        <img src="images/gemini.png" alt="Gemini AI integration" width="150" height="auto" style="width: 100%; height: auto; border-radius: var(--border-radius);">
+                    </picture>
+                    <figcaption>Gemini-cli enables ai agents to assist and automate terminal workflows.</figcaption>
+                </figure>
+                <figure>
+<picture>
+    <img src="images/localai.png" alt="Local AI Display" style="width: 100%; height: auto; border-radius: var(--border-radius);">
+</picture>
+                    <figcaption>A complete mobile ai development powerhouse.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Technical Deep Dive -->
+        <section id="technical" class="container">
+            <h2 class="text-center">Technical Highlights</h2>
+            <article>
+                <blockquote>
+                    This project required navigating a highly undocumented and evolving Android feature. It demonstrates full-stack problem-solving across the Android host, AVF framework, `crosvm` hypervisor, Linux kernel, and Debian guest OS.
+                </blockquote>
+                <div class="grid">
+                    <div>
+                        <h4>Key Accomplishments</h4>
+                        <ul>
+                            <li><strong>Deep AVF Analysis:</strong> Reverse-engineered the VM boot process and `vm_config.json` behavior without official documentation.</li>
+                            <li><strong>Hypervisor Interaction:</strong> Captured and analyzed low-level `crosvm` commands to understand secure resource provisioning.</li>
+                            <li><strong>Novel Storage Solution:</strong> Designed and implemented a complex but reliable method to attach and manage large `qcow2` disk images with LVM.</li>
+                            <li><strong>Robust Automation:</strong> Developed comprehensive shell scripts and custom `systemd` services for automated setup and reliable operation.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>The Future: A Dedicated App</h4>
+                        <p>Manually replicating this environment is highly complex. To provide a streamlined and reliable experience for all users, a dedicated Android application is in development.</p>
+                        <p>The app will handle the complex setup, provide the necessary pre-configured components, and manage the environment, making the power of a full Linux desktop on Android accessible to everyone.</p>
+                        <button data-target="#contact-modal" onClick="toggleModal(event)">Stay updated &amp; Collaborate</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="container">
+            <h2 class="text-center">Contact & Collaboration</h2>
+            <p class="text-center">I am actively seeking collaboration and am open to new opportunities. If this project interests you, let's connect.</p>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://www.linkedin.com/in/cedric-signifyd" target="_blank" rel="noopener noreferrer" role="button" class="button-primary" style="width: 250px;">Connect on LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container" style="text-align: center; padding: 2rem 0;">
+        <small>Authored by Cedric Vallieu / @Smacksmack206</small><br>
+        <small>© 2025 | Built with <a href="https://picocss.com">Pico.css</a></small>
+    </footer>
+
+    <!-- Contact Modal -->
+    <dialog id="contact-modal">
+        <article>
+            <header>
+                <a href="#" aria-label="Close" class="close" data-target="contact-modal" onClick="toggleModal(event)"></a>
+                <h3>Stay Updated & Collaborate</h3>
+            </header>
+            <p>Join the mailing list to get updates on the project and learn about collaboration opportunities.</p>
+            <form id="contact-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <button type="submit" id="submit-contact-form" aria-busy="false">Subscribe</button>
+            </form>
+            <div id="form-response" style="margin-top: 1rem;"></div>
+        </article>
+    </dialog>
+
+    <!-- Gemini API and Theme switcher script -->
+    <script>
+      (() => {
+        // --- THEME SWITCHER ---
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const html = document.documentElement;
+
+        const setTheme = (theme) => {
+            html.setAttribute('data-theme', theme);
+        };
+
+        themeSwitcher.addEventListener('click', (e) => {
+            e.preventDefault();
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }, false);
+
+        // --- GEMINI API INTEGRATION ---
+        const commandInput = document.getElementById('command-input');
+        const generateCommandBtn = document.getElementById('generate-command-btn');
+        const commandOutput = document.getElementById('command-output');
+        const copyButton = document.getElementById('copy-button');
+        
+        const generateIdeaBtn = document.getElementById('generate-idea-btn');
+        const ideaOutput = document.getElementById('idea-output');
+        const ideaText = document.getElementById('idea-text');
+
+        // Function to call the Gemini API via proxy
+        async function callGemini(prompt, button, outputElement) {
+            button.setAttribute('aria-busy', 'true');
+            button.disabled = true;
+            outputElement.textContent = 'Generating...';
+
+            try {
+                const response = await fetch('/.netlify/functions/gemini', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    return text.trim();
+                } else {
+                    throw new Error('Unexpected response format from API.');
+                }
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                return `Error: Could not get a response. ${error.message}`;
+            } finally {
+                button.setAttribute('aria-busy', 'false');
+                button.disabled = false;
+            }
+        }
+
+        // --- COMMAND GENERATOR LOGIC ---
+        generateCommandBtn.addEventListener('click', async () => {
+            const userInput = commandInput.value.trim();
+            if (!userInput) {
+                commandOutput.textContent = 'Please enter a task description.';
+                return;
+            }
+            
+            copyButton.style.display = 'none';
+            const prompt = `You are an expert Linux and DevOps assistant. Based on the following user request, generate a single, copy-pastable shell command or a short, sequential script to be run in a Debian terminal. Only provide the code, no explanations. User request: "${userInput}"`;
+            
+            const generatedCommand = await callGemini(prompt, generateCommandBtn, commandOutput);
+            commandOutput.textContent = generatedCommand;
+            
+            if (!generatedCommand.startsWith('Error:')) {
+                copyButton.style.display = 'block';
+            }
+        });
+
+        copyButton.addEventListener('click', () => {
+            const textToCopy = commandOutput.textContent;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+            alert('Command copied to clipboard!');
+        });
+
+        // --- IDEA GENERATOR LOGIC ---
+        generateIdeaBtn.addEventListener('click', async () => {
+            ideaOutput.style.display = 'none';
+            const prompt = "You are a creative tech enthusiast. Suggest one fun, practical, or interesting project that someone could do with a full Debian Linux environment running on their Android phone. Describe the project in a few sentences. Start with a bolded title for the project idea.";
+            
+            const generatedIdea = await callGemini(prompt, generateIdeaBtn, ideaText);
+            ideaText.innerHTML = generatedIdea.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Basic markdown for bold
+            ideaOutput.style.display = 'block';
+        });
+
+        // --- MODAL HANDLING ---
+        const openModal = (e) => {
+            const modal = document.getElementById(e.currentTarget.dataset.target);
+            if (modal) {
+                modal.showModal();
+            }
+        }
+
+        const closeModal = (e) => {
+            const modal = e.target.closest('dialog');
+            if (modal) {
+                modal.close();
+            }
+        }
+
+        const toggleModal = (event) => {
+            event.preventDefault();
+            const modalId = event.currentTarget.dataset.target;
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.open ? modal.close() : modal.showModal();
+            }
+        };
+
+        // --- CONTACT FORM HANDLING ---
+        const contactForm = document.getElementById('contact-form');
+        const submitButton = document.getElementById('submit-contact-form');
+        const formResponse = document.getElementById('form-response');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitButton.setAttribute('aria-busy', 'true');
+            submitButton.disabled = true;
+            formResponse.textContent = '';
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/.netlify/functions/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    formResponse.textContent = 'Success! Thanks for subscribing.';
+                    contactForm.reset();
+                } else {
+                    formResponse.textContent = `Error: ${result.message || 'Something went wrong.'}`;
+                }
+            } catch (error) {
+                formResponse.textContent = 'An unexpected error occurred.';
+            } finally {
+                submitButton.setAttribute('aria-busy', 'false');
+                submitButton.disabled = false;
+            }
+        });
+
+      })();
+    </script>
+
+</body>
+</html>
+

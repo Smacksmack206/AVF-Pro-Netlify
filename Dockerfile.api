@@ -1,0 +1,24 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy server file
+COPY server.js ./
+
+# Copy public directory
+COPY Public/ ./Public/
+
+# Copy environment file
+COPY .env ./
+
+# Expose port
+EXPOSE 3000
+
+# Start the server
+CMD ["npm", "start"]
